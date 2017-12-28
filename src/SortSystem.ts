@@ -1,4 +1,4 @@
-import { ComponentFactory, IComponent, IComponentFactory, System } from "componententitysystem";
+import { ComponentFactory, IComponent, IComponentFactory, System } from "ecs-framework";
 export { SortSystem };
 
 /* Sort components in the pool by a parameter of type number */

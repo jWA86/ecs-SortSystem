@@ -42,6 +42,6 @@
     "webpack": "^3.10.0"
   },
   "dependencies": {
-    "componententitysystem": "^0.4.3"
+    "ecs-framework": "^0.4.4"
   }
 }
