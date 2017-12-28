@@ -97,7 +97,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var componententitysystem_1 = __webpack_require__(2);
+var ecs_framework_1 = __webpack_require__(2);
 /* Sort components in the pool by a parameter of type number */
 var SortSystem = /** @class */ (function (_super) {
     __extends(SortSystem, _super);
@@ -136,7 +136,7 @@ var SortSystem = /** @class */ (function (_super) {
         return sorted;
     };
     return SortSystem;
-}(componententitysystem_1.System));
+}(ecs_framework_1.System));
 exports.SortSystem = SortSystem;
 
 
