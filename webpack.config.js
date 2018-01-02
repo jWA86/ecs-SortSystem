@@ -8,7 +8,7 @@ module.exports = {
         path: path.resolve('./dist'),
         filename: "index.js",
         libraryTarget: 'umd',
-        library: 'ecs'
+        library: 'ecs-sortsystem'
     },
     module: {
         rules: [
@@ -21,6 +21,10 @@ module.exports = {
     },
     resolve: {
         extensions: [ '.ts' ]
+    },
+    externals: 
+    {
+        "ecs-framework": "umd ecs-framework"
     },
     // plugins: [new UglifyJSPlugin({ sourceMap : true }) 
     //    ]

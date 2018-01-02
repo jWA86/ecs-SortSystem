@@ -1,9 +1,9 @@
 {
   "name": "ecs-sortsystem",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "simple ecs system for sorting components",
   "main": "./dist/index.js",
-  "types": "./dist/src/SortSystem.d.ts",
+  "types": "./dist/src/entry.d.ts",
   "scripts": {
     "test": "karma start",
     "build": "webpack"
@@ -37,11 +37,11 @@
     "karma-typescript": "^3.0.5",
     "mkdirp": "^0.5.1",
     "mocha": "^3.5.0",
-    "ts-loader": "^3.2.0",
+    "ts-loader": "^2.3.7",
     "typescript": "^2.6.2",
     "webpack": "^3.10.0"
   },
   "dependencies": {
-    "ecs-framework": "^0.4.4"
+    "ecs-framework": "^0.4.7"
   }
 }
