@@ -101,15 +101,18 @@ var ecs_framework_1 = __webpack_require__(2);
 /* Sort components in the pool by a parameter of type number */
 var SortSystem = /** @class */ (function (_super) {
     __extends(SortSystem, _super);
-    function SortSystem(paramName) {
+    function SortSystem(paramNameToSortBy) {
         var _this = _super.call(this) || this;
-        _this.paramName = paramName;
+        _this.paramNameToSortBy = paramNameToSortBy;
         _this.sort = _this.insertionSort;
+        _this._parameters = {};
+        _this.parametersSource.set(paramNameToSortBy, { key: paramNameToSortBy, source: undefined });
         return _this;
     }
-    SortSystem.prototype.process = function (args) {
-        var pool = this.factories[0];
-        var sortedIndex = this.sort(pool.values, pool.iterationLength, this.paramName);
+    SortSystem.prototype.process = function () {
+        // const pool = this.factories[0];
+        var pool = this.parametersSource.get(this.paramNameToSortBy).source;
+        var sortedIndex = this.sort(pool.values, pool.activeLength, this.paramNameToSortBy);
         var l = sortedIndex.length;
         for (var i = 0; i < sortedIndex.length; ++i) {
             var pId = pool.values[i].entityId;
@@ -120,7 +123,7 @@ var SortSystem = /** @class */ (function (_super) {
         }
     };
     /* Not use as the sorting is done in the process method */
-    SortSystem.prototype.execute = function (c) { };
+    SortSystem.prototype.execute = function () { };
     /* Return an array sorted in ascending order of id and the value of the sorting parameter */
     SortSystem.prototype.insertionSort = function (input, length, paramToSort) {
         var sorted = [];

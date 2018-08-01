@@ -14,7 +14,7 @@
         "max-classes-per-file": false,
         "rulesDirectory": [],
         "no-empty": false,
-        "max-line-length": 140,
+        "max-line-length": false,
         "no-console": false,
         "no-string-literal": false,
         "prefer-for-of": false
