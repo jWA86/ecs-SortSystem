@@ -1,9 +1,9 @@
 {
   "name": "ecs-sortsystem",
-  "version": "2.0.0-alpha",
+  "version": "2.0.1-alpha",
   "description": "simple ecs system for sorting components",
   "main": "./dist/index.js",
-  "types": "./dist/src/entry.d.ts",
+  "types": "./dist/src/SortSystem.d.ts",
   "scripts": {
     "test": "karma start",
     "build": "webpack"
