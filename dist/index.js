@@ -101,14 +101,14 @@ var ecs_framework_1 = __webpack_require__(2);
 /* Sort components in the pool by a parameter of type number */
 var SortSystem = /** @class */ (function (_super) {
     __extends(SortSystem, _super);
-    function SortSystem(paramNameToSortBy) {
+    function SortSystem() {
         var _this = _super.call(this) || this;
         _this.sort = _this.insertionSort;
-        _this._defaultParameter = { paramName: "param" };
+        _this._defaultParameter = { paramName: "" };
+        return _this;
         // System.init won't set parametersSource since the parameter passed by the constructor and set from the System generic
         // this allow to change the parameter name to sort by at runtime without instantiating a new
-        _this.parametersSource.set("paramName", { key: "paramName", source: undefined, keyInSource: paramNameToSortBy });
-        return _this;
+        // this.parametersSource.set("paramName", { key: "paramName", source: undefined, keyInSource: paramNameToSortBy as keyof interfaces.IComponent });
     }
     SortSystem.prototype.process = function () {
         // const pool = this.factories[0];
@@ -126,6 +126,9 @@ var SortSystem = /** @class */ (function (_super) {
     };
     /* Not use as the sorting is done in the process method */
     SortSystem.prototype.execute = function () { };
+    SortSystem.prototype.setParamSource = function (paramName, pool, paramNameInSource) {
+        _super.prototype.setParamSource.call(this, "paramName", pool, paramNameInSource);
+    };
     /* Return an array sorted in ascending order of id and the value of the sorting parameter */
     SortSystem.prototype.insertionSort = function (input, length, paramToSort) {
         var sorted = [];

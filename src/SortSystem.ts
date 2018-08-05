@@ -1,16 +1,16 @@
 import { interfaces, System } from "ecs-framework";
-import { IComponent } from "../node_modules/ecs-framework/dist/src/interfaces";
 export { SortSystem };
 
+interface IP { paramName: string; }
 /* Sort components in the pool by a parameter of type number */
-class SortSystem extends System<{paramName: string }> {
+class SortSystem extends System<IP> {
     protected sort = this.insertionSort;
-    protected _defaultParameter = { paramName: "param" };
-    constructor(paramNameToSortBy: string) {
+    protected _defaultParameter: IP = { paramName: "" };
+    constructor() {
         super();
         // System.init won't set parametersSource since the parameter passed by the constructor and set from the System generic
         // this allow to change the parameter name to sort by at runtime without instantiating a new
-        this.parametersSource.set("paramName", {key: "paramName", source: undefined, keyInSource: paramNameToSortBy as keyof IComponent});
+        // this.parametersSource.set("paramName", { key: "paramName", source: undefined, keyInSource: paramNameToSortBy as keyof interfaces.IComponent });
     }
     public process() {
         // const pool = this.factories[0];
@@ -29,7 +29,9 @@ class SortSystem extends System<{paramName: string }> {
 
     /* Not use as the sorting is done in the process method */
     public execute() { }
-
+    public setParamSource<C extends interfaces.IComponent>(paramName: "paramName", pool: interfaces.IComponentFactory<C>, paramNameInSource: keyof C) {
+        super.setParamSource("paramName", pool, paramNameInSource);
+    }
     /* Return an array sorted in ascending order of id and the value of the sorting parameter */
     protected insertionSort(input: interfaces.IComponent[], length: number, paramToSort: string): Array<{ id: number, s: number }> {
         const sorted = [];
