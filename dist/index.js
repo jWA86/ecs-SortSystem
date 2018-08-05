@@ -103,16 +103,18 @@ var SortSystem = /** @class */ (function (_super) {
     __extends(SortSystem, _super);
     function SortSystem(paramNameToSortBy) {
         var _this = _super.call(this) || this;
-        _this.paramNameToSortBy = paramNameToSortBy;
         _this.sort = _this.insertionSort;
-        _this._parameters = {};
-        _this.parametersSource.set(paramNameToSortBy, { key: paramNameToSortBy, source: undefined });
+        _this._defaultParameter = { paramName: "param" };
+        // System.init won't set parametersSource since the parameter passed by the constructor and set from the System generic
+        // this allow to change the parameter name to sort by at runtime without instantiating a new
+        _this.parametersSource.set("paramName", { key: "paramName", source: undefined, keyInSource: paramNameToSortBy });
         return _this;
     }
     SortSystem.prototype.process = function () {
         // const pool = this.factories[0];
-        var pool = this.parametersSource.get(this.paramNameToSortBy).source;
-        var sortedIndex = this.sort(pool.values, pool.activeLength, this.paramNameToSortBy);
+        var paramInfo = this.parametersSource.get("paramName");
+        var pool = paramInfo.source;
+        var sortedIndex = this.sort(pool.values, pool.activeLength, paramInfo.keyInSource);
         var l = sortedIndex.length;
         for (var i = 0; i < sortedIndex.length; ++i) {
             var pId = pool.values[i].entityId;

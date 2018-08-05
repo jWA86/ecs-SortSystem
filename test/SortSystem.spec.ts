@@ -31,7 +31,7 @@ describe("SortSystem", () => {
 
         // should give [3, 2, 1, 0]
         const sortSystem = new SortSystem("zIndex");
-        sortSystem.setParamSource("zIndex", layerFactory);
+        sortSystem.setParamSource("paramName", layerFactory, "zIndex");
         sortSystem.process();
 
         expect(layerFactory.values[0].zIndex).to.equal(0);
