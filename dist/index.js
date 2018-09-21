@@ -101,8 +101,8 @@ var ecs_framework_1 = __webpack_require__(2);
 /* Sort components in the pool by a parameter of type number */
 var SortSystem = /** @class */ (function (_super) {
     __extends(SortSystem, _super);
-    function SortSystem(params) {
-        var _this = _super.call(this, params) || this;
+    function SortSystem() {
+        var _this = _super.call(this, { paramName: "", entityId: 0, active: true }) || this;
         _this.sort = _this.insertionSort;
         return _this;
         // System.init won't set parametersSource since the parameter passed by the constructor and set from the System generic
