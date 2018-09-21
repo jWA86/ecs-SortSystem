@@ -31,6 +31,9 @@ class SortSystem extends System<IP> {
     public setParamSource<C extends interfaces.IComponent>(paramName: "paramName", pool: interfaces.IComponentFactory<C>, paramNameInSource: keyof C) {
         super.setParamSource("paramName", pool, paramNameInSource);
     }
+    public validateParametersSources(): true | Error {
+        return this.parametersSource.get("paramName").validate();
+    }
     /* Return an array sorted in ascending order of id and the value of the sorting parameter */
     protected insertionSort(input: interfaces.IComponent[], length: number, paramToSort: string): Array<{ id: number, s: number }> {
         const sorted = [];

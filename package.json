@@ -1,6 +1,6 @@
 {
   "name": "ecs-sortsystem",
-  "version": "3.0.0-alpha",
+  "version": "3.0.1-alpha",
   "description": "simple ecs system for sorting components",
   "main": "./dist/index.js",
   "types": "./dist/src/SortSystem.d.ts",
