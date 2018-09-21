@@ -30,7 +30,7 @@ describe("SortSystem", () => {
         expect(layerFactory.values[3].zIndex).to.equal(0);
 
         // should give [3, 2, 1, 0]
-        const sortSystem = new SortSystem();
+        const sortSystem = new SortSystem({paramName: "", entityId: 0, active: true});
         sortSystem.setParamSource("paramName", layerFactory, "zIndex");
         sortSystem.process();
 

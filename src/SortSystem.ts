@@ -1,13 +1,12 @@
 import { interfaces, System } from "ecs-framework";
 export { SortSystem };
 
-interface IP { paramName: string; }
+interface IP extends interfaces.IComponent { paramName: string; }
 /* Sort components in the pool by a parameter of type number */
 class SortSystem extends System<IP> {
     protected sort = this.insertionSort;
-    protected _defaultParameter: IP = { paramName: "" };
-    constructor() {
-        super();
+    constructor(params: IP) {
+        super(params);
         // System.init won't set parametersSource since the parameter passed by the constructor and set from the System generic
         // this allow to change the parameter name to sort by at runtime without instantiating a new
         // this.parametersSource.set("paramName", { key: "paramName", source: undefined, keyInSource: paramNameToSortBy as keyof interfaces.IComponent });
@@ -16,7 +15,7 @@ class SortSystem extends System<IP> {
         // const pool = this.factories[0];
         const paramInfo = this.parametersSource.get("paramName");
         const pool = paramInfo.source;
-        const sortedIndex = this.sort(pool.values, pool.activeLength, paramInfo.keyInSource);
+        const sortedIndex = this.sort(pool.values, pool.activeLength, paramInfo.keyInSource as string);
         const l = sortedIndex.length;
         for (let i = 0; i < sortedIndex.length; ++i) {
             const pId = pool.values[i].entityId;
