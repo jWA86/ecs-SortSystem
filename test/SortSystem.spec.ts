@@ -1,4 +1,4 @@
-import { assert, expect } from "chai";
+import { expect } from "chai";
 import { ComponentFactory, interfaces } from "ecs-framework";
 import "mocha";
 
@@ -30,7 +30,7 @@ describe("SortSystem", () => {
         expect(layerFactory.values[3].zIndex).to.equal(0);
 
         // should give [3, 2, 1, 0]
-        const sortSystem = new SortSystem({paramName: "", entityId: 0, active: true});
+        const sortSystem = new SortSystem();
         sortSystem.setParamSource("paramName", layerFactory, "zIndex");
         sortSystem.validateParametersSources();
         sortSystem.process();
