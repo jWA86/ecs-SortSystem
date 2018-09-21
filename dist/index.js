@@ -128,6 +128,9 @@ var SortSystem = /** @class */ (function (_super) {
     SortSystem.prototype.setParamSource = function (paramName, pool, paramNameInSource) {
         _super.prototype.setParamSource.call(this, "paramName", pool, paramNameInSource);
     };
+    SortSystem.prototype.validateParametersSources = function () {
+        return this.parametersSource.get("paramName").validate();
+    };
     /* Return an array sorted in ascending order of id and the value of the sorting parameter */
     SortSystem.prototype.insertionSort = function (input, length, paramToSort) {
         var sorted = [];
